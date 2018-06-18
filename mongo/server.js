@@ -2,9 +2,7 @@ const cheerio =require("cheerio");
 const request = require("request");
 
 // var MONGODB_URI = process.env.MONGODB_URI 
-// console.log("\n***********\n" +
-// "Grabbng wahtever hw says \n" +
-// );
+
 
 request("https://www.bostonglobe.com/", function(error, response, html){
 
@@ -14,15 +12,15 @@ const results = [];
 
 $("h2.story-title").each(function(i, element) {
 
-    let Headline = $(element).text();
-    // let Summary = $(element).text();
-
+    const Headline = $(element).text();
+    const Summary = $(element).children().find('p').text();
     // for child elements w/ attributes
-    let URL = $(element).children().attr("href");
+    const URL = $(element).children().attr("href");
  
     results.push({
-      title: Headline, 
-      link: URL,
+      title: Headline,
+      summary: Summary, 
+      link: URL
     });
 
   });

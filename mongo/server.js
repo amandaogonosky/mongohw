@@ -1,6 +1,9 @@
 const cheerio =require("cheerio");
 const request = require("request");
-
+const express = require('express');
+const router = express.Router();
+const db = require("");
+const app = express();
 // var MONGODB_URI = process.env.MONGODB_URI 
 
 

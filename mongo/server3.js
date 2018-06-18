@@ -1,17 +1,35 @@
-const cheerio =require("cheerio");
-const request = require("request");
+const mongoose = require("mongoose");
 
-console.log("\n***********\n" +
-"Grabbng wahtever hw says \n" +
-);
+const Schema = mongoose.Schema;
 
-request("https://old.reddit.com/r/webev/", function(error, response, html){
+const ArticleSchema = new Schema({
+    site: {
+        type: String,
+        required: true
+    },
+    url: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    headline: {
+        type: String,
+        required: true
+    },
+    summary: {
+        type: String,
+    },
+    byline: {
+        type: String,
+    },
+    image: {
+        type: String,
+    },
+    comments: [{
+        type: Schema.Types.ObjectId,
+        ref: "comments"
+    }]
+});
 
-const $ = cheerio.load(html);
-
-const results = [];
-
-
-
-
-}
+let Article = mongoose.model("Articles", ArticleSchema);
+module.exports = Article;

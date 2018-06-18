@@ -1,21 +1,31 @@
 const cheerio =require("cheerio");
 const request = require("request");
 
-console.log("\n***********\n" +
-"Grabbng wahtever hw says \n" +
-);
+// var MONGODB_URI = process.env.MONGODB_URI 
+// console.log("\n***********\n" +
+// "Grabbng wahtever hw says \n" +
+// );
 
-request("http://www.tmz.com/", function(error, response, html){
+request("https://www.bostonglobe.com/", function(error, response, html){
 
 const $ = cheerio.load(html);
 
 const results = [];
 
+$("h2.story-title").each(function(i, element) {
+
+    let Headline = $(element).text();
+    // let Summary = $(element).text();
+
+    // for child elements w/ attributes
+    let URL = $(element).children().attr("href");
+ 
+    results.push({
+      title: Headline, 
+      link: URL,
+    });
+
+  });
+  console.log(results);
 }
-// Headline - the title of the article
-
-// * Summary - a short summary of the article
-
-// * URL - the url to the original article
-
-// * Feel free to add more content to your database (photos, bylines, and so on).
+)

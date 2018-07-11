@@ -81,7 +81,7 @@ mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI);
 
 // Listen on port 3000
-app.listen(, function() {
+app.listen(PORT, function() {
   console.log("App on 3000!");
 });
 

@@ -3,18 +3,18 @@ const request = require("request");
 const express = require('express');
 const router = express.Router();
 // const db = require("");
-const mongojs =("mongojs");
+const mongoose = require("mongoose");
 
 const app = express();
 
 const databaseUrl = "scraper";
 const collections =["news"];
 
-const db = mongojs(databaseUrl, collections);
-db.on("error", function(err){
-console.log("Databse error:", error);
+// const db = mongoose(databaseUrl, collections);
+// db.on("error", function(err){
+// console.log("Databse error:", error);
 
-});
+// });
 
 app.get("/", function(req,res){
 res.send ("Yo Dawg");
@@ -68,10 +68,7 @@ app.get("/scrape", function(req, res) {
 });
 
 
-// Listen on port 3000
-app.listen(3000, function() {
-  console.log("App on 3000!");
-});
+
 
 
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scraper";
@@ -81,26 +78,30 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scraper";
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI);
 
+// Listen on port 3000
+app.listen(3000, function() {
+  console.log("App on 3000!");
+});
 
-request("https://www.bostonglobe.com/", function(error, response, html){
+// request("https://www.bostonglobe.com/", function(error, response, html){
 
-const $ = cheerio.load(html);
+// const $ = cheerio.load(html);
 
-const results = [];
+// const results = [];
 
-$("h2.story-title").each(function(i, element) {
+// $("h2.story-title").each(function(i, element) {
 
-    const Headline = $(element).text();
-    const Summary = $(element).children("a").text();
-    const URL = $(element).children().attr("href");
+//     const Headline = $(element).text();
+//     const Summary = $(element).children("a").text();
+//     const URL = $(element).children().attr("href");
  
-    results.push({
-      title: Headline,
-      summary: Summary, 
-      link: URL
-    });
+//     results.push({
+//       title: Headline,
+//       summary: Summary, 
+//       link: URL
+//     });
 
-  });
-  console.log(results);
-}
-)
+//   });
+//   console.log(results);
+// }
+// )

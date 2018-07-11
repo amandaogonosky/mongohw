@@ -10,6 +10,8 @@ const app = express();
 const databaseUrl = "scraper";
 const collections =["news"];
 
+const PORT = 3000 || process.env.PORT;
+
 // const db = mongoose(databaseUrl, collections);
 // db.on("error", function(err){
 // console.log("Databse error:", error);
@@ -79,7 +81,7 @@ mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI);
 
 // Listen on port 3000
-app.listen(3000, function() {
+app.listen(, function() {
   console.log("App on 3000!");
 });
 

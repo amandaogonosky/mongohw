@@ -3,14 +3,14 @@ const request = require("request");
 const express = require('express');
 const router = express.Router();
 // const db = require("");
-const monogjs =("mongojs");
+const mongojs =("mongojs");
 
 const app = express();
 
 const databaseUrl = "scraper";
 const collections =["news"];
 
-const db = monojs(databaseUrl, collections);
+const db = mongojs(databaseUrl, collections);
 db.on("error", function(err){
 console.log("Databse error:", error);
 
